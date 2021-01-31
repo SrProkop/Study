@@ -1,4 +1,4 @@
-import MyException.*;
+import myException.*;
 
 public class ExceptionMain {
 

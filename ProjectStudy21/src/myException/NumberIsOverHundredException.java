@@ -1,4 +1,4 @@
-package MyException;
+package myException;
 
 public class NumberIsOverHundredException extends Exception{
 

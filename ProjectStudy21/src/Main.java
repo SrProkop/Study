@@ -11,9 +11,6 @@ public class Main {
         HashMap<Character, Integer> hashMap = new HashMap<>();
 
         for (char symbol : listChar) {
-            if (hashMap.size() == 0) {
-                hashMap.put(symbol, 0);
-            }
             if (hashMap.containsKey(symbol)) {
                 int count = hashMap.get(symbol) + 1;
                 hashMap.remove(symbol);

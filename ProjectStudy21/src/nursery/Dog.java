@@ -1,4 +1,4 @@
-package Nursery;
+package nursery;
 
 public class Dog {
 
