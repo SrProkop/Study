@@ -1,0 +1,6 @@
+<note>
+<to>Вася</to>
+<from>Света</from>
+<type>Напоминание</type>
+<body>Позвони мне завтра!</body>
+</note>
