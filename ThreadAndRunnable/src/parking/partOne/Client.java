@@ -1,4 +1,4 @@
-package parking;
+package parking.partOne;
 
 public class Client {
 

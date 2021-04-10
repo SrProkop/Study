@@ -1,4 +1,4 @@
-package parking;
+package parking.partOne;
 
 import java.util.ArrayList;
 
