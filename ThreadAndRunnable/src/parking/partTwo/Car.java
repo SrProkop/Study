@@ -14,7 +14,7 @@ public class Car extends Thread{
             try {
                 boolean bl = true;
                 while (bl) {
-                    if (AutoParking.autoParking.size() < 2) {
+                    if (AutoParking.autoParking.size() < 10) {
                         bl = false;
                     }
                 }
