@@ -9,7 +9,6 @@ public class Car extends Thread{
     @Override
     public void run() {
 
-
         synchronized (AutoParking.entry) {
             try {
                 boolean bl = true;
@@ -20,7 +19,7 @@ public class Car extends Thread{
                 }
                 AutoParking.entry.add(Thread.currentThread());
                 System.out.println("Автомобиль под номером " + Thread.currentThread().getName() + " заезжает на парковку");
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 AutoParking.entry.remove(Thread.currentThread());
                 AutoParking.autoParking.add(Thread.currentThread());
                 System.out.println("Автомобиль под номером " + Thread.currentThread().getName() + " встал на парковке");
@@ -30,7 +29,7 @@ public class Car extends Thread{
         }
 
         try {
-            Thread.sleep(300);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -40,12 +39,13 @@ public class Car extends Thread{
                 System.out.println("Автомобиль под номером " + Thread.currentThread().getName() + " выезжает с парковки");
                 AutoParking.autoParking.remove(Thread.currentThread());
                 AutoParking.departure.add(Thread.currentThread());
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 AutoParking.departure.remove(Thread.currentThread());
                 System.out.println("Автомобиль под номером " + Thread.currentThread().getName() + " уехал");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
     }
 }
