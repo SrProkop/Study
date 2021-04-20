@@ -1,12 +1,14 @@
 package parking.partTwo;
 
-import java.util.ArrayList;
-
 public class AutoParking {
-    public static volatile ArrayList<Thread> autoParking = new ArrayList<>();
 
-    public static ArrayList<Thread> entry = new ArrayList<>();
+    private volatile int places = 0;
 
-    public static ArrayList<Thread> departure = new ArrayList<>();
+    public int getPlaces() {
+        return places;
+    }
 
+    public void setPlaces(int places) {
+        this.places = places;
+    }
 }

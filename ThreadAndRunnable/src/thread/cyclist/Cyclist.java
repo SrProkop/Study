@@ -1,16 +1,17 @@
 package thread.cyclist;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.Semaphore;
 
 public class Cyclist extends Thread {
 
-    private static volatile ArrayList<Cyclist> winners = new ArrayList<>();
+    private Semaphore winners;
     private int speed;
     private long time;
 
-    public Cyclist(String name) {
+    public Cyclist(String name, Semaphore winners) {
         super(name);
+        this.winners = winners;
     }
 
     public int getSpeed() {
@@ -29,14 +30,6 @@ public class Cyclist extends Thread {
         this.time = time;
     }
 
-    public static ArrayList<Cyclist> getWinners() {
-        return winners;
-    }
-
-    public static void setWinners(ArrayList<Cyclist> winners) {
-        Cyclist.winners = winners;
-    }
-
     @Override
     public void run() {
         this.speed = speed()*10;
@@ -45,23 +38,18 @@ public class Cyclist extends Thread {
         if (!isInterrupted()) {
             try {
                 Thread.sleep(speed);
+                winners.acquire();
+                Date end = new Date();
+                time = (end.getTime() - start.getTime()) / 1000;
+                System.out.println("Велосипедист " + Thread.currentThread().getName() + " закончил гонку за " + time + " секунд, заняв " + ((winners.availablePermits() - 5) * -1) + " место");
+
             } catch (InterruptedException e) {
                 System.out.println("Велосепидист " + Thread.currentThread().getName() + " закончил гонку досрочно.");
-            }
-        }
-        synchronized (winners) {
-            if (winners.size() == 5) {
-                return;
-            } else {
-                Date end = new Date();
-                winners.add(this);
-                time = (end.getTime() - start.getTime()) / 1000;
-                System.out.println("Велосипедист " + Thread.currentThread().getName() + " закончил гонку за " + time + " секунд, заняв " + winners.size() + " место");
             }
         }
     }
 
     public int speed() {
-        return (int) (Math.random() * 8573) + 5455;  //Случайная скорость от 8582мс за 1км(7км в минуту) до 5455мс(11км в минуту) за 1км
+        return (int) (Math.random() * 857) + 545;  //Случайная скорость от 8582мс за 1км(7км в минуту) до 5455мс(11км в минуту) за 1км
     }
 }
